@@ -1,0 +1,107 @@
+@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TestStore.Models.Course>
+
+@*@model IEnumerable<TestStore.Models.Course>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 mt-4">
+            <a href="@Url.Action("CourseDetails")?fCId=@item.CId">
+                <div class="card">
+                    <img src="~/Images/CourseImg/@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">
+                            想著這次一定要好好紀錄，卻不知道該從何下手、不知道該怎麼整理旅途中拿到的照片成打的回憶，看著買來的跟筆不知道該怎麼下筆？
+                            這次，一起動手用插圖來記錄下旅行吧🎨
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                        <small class="text-muted">209人</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table">
+        @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th></th>
+        </tr>*@
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lector)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Img)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
