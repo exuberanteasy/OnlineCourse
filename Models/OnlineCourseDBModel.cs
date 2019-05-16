@@ -1,3 +1,6 @@
+//既有資料庫的 Code First 產生的
+
+
 namespace WebApplication1.Models
 {
     using System;
